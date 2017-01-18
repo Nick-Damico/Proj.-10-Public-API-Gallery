@@ -12,12 +12,27 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="js/plugin/lightbox/lightbox.min.css">
     <link rel="stylesheet" href="css/application.css">
+    <!-- AJAX Request -->
+    <script src="js/lib/jquery-3.1.1.min.js"></script>
+    <script src="js/plugin/lightbox/lightbox.min.js"></script>
+    <script src="js/app.js"></script>
+
 </head>
 
 <body>
 
     <header id="main-header">
-        <h1 class="main-title">My Favorite Photos From Twitter</h1>
+        <h1 class="main-title">Flickr API Photo Feed</h1>
+        <div class="wrapper">
+          <nav id="main-nav">
+            <ul>
+              <li><a href="">Flickr</a></li>
+              <li><a href="">Spotify</a></li>
+            </ul>
+          </nav>
+        </div>
+      <!-- End of .wrapper -->
+        <!-- End of #main-nav -->
     </header>
     <!-- End of header -->
     <hr class="style-four" />
@@ -25,7 +40,7 @@
         <main id="main-content">
             <!-- PHOTO GROUP OF (4) 1 -->
             <div class="container">
-                <div class="row">
+                <div id="contentRow" class="row">
 
                     <div class="img-box sm-col-50 md-col-1-3">
                         <a href="img/01.jpg" data-lightbox="image-1" data-title="Photo-1">
@@ -92,9 +107,7 @@
     <!-- End of .Wrapper -->
 
     <!-- SCRIPTS -->
-    <script src="js/lib/jquery-3.1.1.min.js"></script>
-    <script src="js/plugin/lightbox/lightbox.min.js"></script>
-    <script src="js/app.js"></script>
+
 </body>
 
 </html>

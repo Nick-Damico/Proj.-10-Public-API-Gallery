@@ -65,15 +65,6 @@ img {
   flex-wrap: wrap;
   justify-content: space-between; }
 
-.img-box {
-  text-align: center;
-  margin-top: 10px; }
-  .img-box img {
-    width: 100%; }
-  @media (min-width: 460px) and (orientation: landscape) {
-    .img-box img {
-      width: 100%; } }
-
 .sm-col-50 {
   width: 48%; }
 
@@ -93,5 +84,16 @@ hr {
   font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.2; }
+
+.img-box {
+  text-align: center;
+  margin-top: 10px; }
+  .img-box img {
+    width: 150px;
+    height: 150px; }
+    @media (min-width: 460px) and (orientation: landscape) {
+      .img-box img {
+        width: 200px;
+        height: 200px; } }
 
 /*# sourceMappingURL=application.css.map */

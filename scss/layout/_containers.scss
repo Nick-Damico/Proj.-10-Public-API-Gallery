@@ -22,16 +22,3 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
-.img-box {
-  text-align: center;
-  margin-top: 10px;
-  img {
-    width: 100%;
-  }
-  @include col-md {
-    img {
-      width: 100%;
-    }
-  }
-}

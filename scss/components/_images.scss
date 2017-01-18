@@ -1,0 +1,14 @@
+.img-box {
+  text-align: center;
+  margin-top: 10px;
+
+    img {
+      width: 150px;
+      height: 150px;
+      @include col-md {
+        width: 200px;
+        height: 200px;
+      }
+  }
+
+  }
