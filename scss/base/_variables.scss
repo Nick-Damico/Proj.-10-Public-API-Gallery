@@ -1,0 +1,64 @@
+// Descriptive color variables
+
+$white            : #fafafa;
+$black            : #000;
+$grey             : lightgrey;
+$concrete         : #f2f2f2;
+$oslo-gray        : #8f949a;
+$light-green      : lightgreen;
+
+// Descriptive Skills color Vars
+
+$boston-blue      : #3f8abf;
+$jelly-bean       : #2a6f9e;
+$blush            : #c25975;
+$gamboge          : #e59a13;
+
+// Functional color variables
+
+$color-text-light   : $concrete;
+$color-text-dark    : $black;
+
+$color-bg-light     : $white;
+$color-bg-med       : $concrete;
+$color-bg-dark      : $oslo-gray;
+$color-bg-black     : $black;
+
+$color-html-skill   : $boston-blue;
+$color-css-skill    : $jelly-bean;
+$color-js-skill     : $blush;
+$color-design-skill : $gamboge;
+
+// Font Stacks
+
+$stack-sans-serif     : Helvetica, Arial, sans-serif;
+$stack-open-sans      : 'Open Sans Condensed', $stack-sans-serif;
+$stack-raleway        : 'Raleway', $stack-sans-serif;
+
+// Font Size
+
+$font-small           : .875em;
+$font-med             : 1em;
+$font-large           : 1.5em;
+
+// Border radius
+
+$br-round: 50%;
+
+// Center El's
+
+$margin-center      :  0 auto;
+
+// Asset paths
+
+$path-img  : '../img';
+
+// Media Query
+
+// ,(min-width: 600px) and (orientation: landscape)'
+
+// Fixes layout issue with project pic layout
+$brk-2col-layout : '(min-width: 460px) and (max-width:1023px)';
+
+$brk-md :  '(min-width: 460px) and (orientation: landscape)';
+$brk-wide   :  '(min-width: 1024px)';

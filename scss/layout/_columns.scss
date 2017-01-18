@@ -1,0 +1,13 @@
+
+
+.sm-col-50 {
+  width: 48%;
+}
+
+.md-col-1-3 {
+  
+  @include col-md{
+    width: 31.73333%;
+  }
+
+}

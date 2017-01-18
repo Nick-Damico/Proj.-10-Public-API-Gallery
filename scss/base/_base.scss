@@ -1,0 +1,44 @@
+/****************************************
+BASE STYLES
+/***************************************/
+
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+body {
+    @include text(16px, 1.6, 100, $color-text-dark);
+    background: url('../img/seigaiha.png') repeat;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+a:hover img,
+a:active img,
+a:focus img {
+  opacity: 1;
+  box-shadow: 0px 0px 7px 3px rgba(119,120,125,0.74);
+}
+
+:focus {
+  outline: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    transition: box-shadow .5s ease-in-out;
+}

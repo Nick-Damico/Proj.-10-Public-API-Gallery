@@ -1,0 +1,19 @@
+#main-header {
+  padding: 1.5rem;
+  transition: padding .5s ease-out;
+
+  @include col-md {
+    padding: 2rem;
+  }
+
+  .main-title {
+    text-align: center;
+  }
+
+}
+
+
+
+hr {
+  @extend %hr-style;
+}
