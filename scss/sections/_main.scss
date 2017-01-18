@@ -1,0 +1,10 @@
+#main-content {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  &.flickr-main {
+    background: $color-bg-black;
+  }
+  &.spotify-main {
+    background: $color-bg-green;
+  }
+}

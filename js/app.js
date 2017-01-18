@@ -1,9 +1,17 @@
 $(document).ready(function() {
 
+  ////////////////////////////////////////
+  //  Global Variables
+  ////////////////////////////////////////
+
+  //  Both AJAX API Requests are made at page load The HTML fomatted by callback functions are then stored in these variables and called on event 'click' of navigation tab.
+  var photoHTML = '';
+  var albumHTML = '';
 
   ////////////////////////////////////////
   //  AJAX REQUEST FOR FLICKR PUBLIC API
   ////////////////////////////////////////
+
   var flickrURL = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 
   var flickrData = {
@@ -12,7 +20,6 @@ $(document).ready(function() {
   };
 
   function flickrCallback(data) {
-    var photoHTML = '';
     var photoLink = '';
 
     $.each(data.items, function(i, photo) {
@@ -44,15 +51,12 @@ $(document).ready(function() {
   //////////////////////////////////////////
   var spotifyURL = "https://api.spotify.com/v1/search";
   var spotifyData = {
-           q: 'Kanye',
+           q: 'Pink Floyd',
            type: 'album'
          };
          function spotifyCallback(data) {
-           console.log(data.albums.items);
-           var albumHTML = '';
 
            $.each(data.albums.items, function(i, album) {
-             console.log('loop');
                albumHTML += '<div class="img-box sm-col-50 md-col-1-3">';
                //  Build anchor tag
                albumHTML += '<a href="' + album.images[0].url + '"';
@@ -65,12 +69,47 @@ $(document).ready(function() {
                albumHTML += '</a>';
                //  Close div tag
                albumHTML += '</div>';
-               console.log(albumHTML + 'hi');
            }); //  End of Loop
-           $('#contentRow').html(albumHTML);
+          //  $('#contentRow').html(albumHTML);
          };  // End of Function
 
 
   $.getJSON( spotifyURL, spotifyData, spotifyCallback );
+
+
+  ////////////////////////////////////////
+  //  EVENT HANDLERS
+  ////////////////////////////////////////
+
+  //  FLICKR-LINK NAV 'CLICK'
+  $('.flickr-link').on('click', function(e) {
+    e.preventDefault();
+    $('#contentRow').fadeOut('slow', function() {
+      $(this).html(photoHTML).fadeIn('slow');
+    });
+    //  Hide Title, Update Title, then Show Title
+    $('.main-title').fadeOut('slow',function(){
+      $(this).html('Flickr API Photo Feed');
+    }).fadeIn('slow');
+    $('#main-content').fadeOut('slow',function(){
+      $(this).removeClass('spotify-main').addClass('flickr-main').fadeIn('slow');
+    });
+  });
+
+  //  SPOTIFY-LINK NAV 'CLICK'
+  $('.spotify-link').on('click', function(e){
+    e.preventDefault();
+    $('#contentRow').fadeOut('slow', function() {
+      $(this).html(albumHTML).fadeIn('slow');
+    });
+    //  Hide Title, Update Title, then Show Title
+    $('.main-title').fadeOut('slow', function() {
+      $(this).html('Spotify API Album Feed');
+    }).fadeIn('slow');
+    $('#main-content').fadeOut('slow',function(){
+      $(this).removeClass('flickr-main').addClass('spotify-main').fadeIn('slow');
+    });
+  });
+
 
 }); //  END of ready

@@ -1,7 +1,12 @@
 /* ---- Font Styles---- */
 
 .main-title {
+  color: $color-text-dark;
   font-family: $stack-open-sans;
   font-weight: 300;
   line-height: 1.2;
+  transition: font-size .8s ease-out;
+  @include col-md {
+      font-size: 3rem;
+  }
 }

@@ -1,19 +1,17 @@
 #main-header {
-  padding: 1.5rem;
+  padding-top: 1.5rem;
   transition: padding .5s ease-out;
 
+  .main-title {
+    margin-bottom: 1rem;
+  }
+
   @include col-md {
-    padding: 2rem;
+    padding-top: 2rem;
   }
 
   .main-title {
     text-align: center;
   }
 
-}
-
-
-
-hr {
-  @extend %hr-style;
 }

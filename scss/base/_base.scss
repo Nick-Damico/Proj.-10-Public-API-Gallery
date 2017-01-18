@@ -6,9 +6,10 @@ BASE STYLES
     box-sizing: border-box;
 }
 
+
 body {
     @include text(16px, 1.6, 100, $color-text-dark);
-    background: url('../img/seigaiha.png') repeat;
+    @extend %primary-bg;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,5 +41,7 @@ ul {
 
 img {
     max-width: 100%;
-    transition: box-shadow .5s ease-in-out;
+    transition: box-shadow .5s ease-in-out,
+                width .5s ease-out,
+                height .5s ease-out;
 }

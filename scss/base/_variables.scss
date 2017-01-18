@@ -7,6 +7,9 @@ $concrete         : #f2f2f2;
 $oslo-gray        : #8f949a;
 $light-green      : lightgreen;
 
+$spotify-green    : #23cf5f;
+$flickr-black     : rgba(21,21,23,.95);
+
 // Descriptive Skills color Vars
 
 $boston-blue      : #3f8abf;
@@ -20,9 +23,8 @@ $color-text-light   : $concrete;
 $color-text-dark    : $black;
 
 $color-bg-light     : $white;
-$color-bg-med       : $concrete;
-$color-bg-dark      : $oslo-gray;
-$color-bg-black     : $black;
+$color-bg-black     : $flickr-black;
+$color-bg-green     : $spotify-green;
 
 $color-html-skill   : $boston-blue;
 $color-css-skill    : $jelly-bean;
