@@ -9,7 +9,6 @@ BASE STYLES
 
 body {
     @include text(16px, 1.6, 100, $color-text-dark);
-    @extend %primary-bg;
 }
 
 h1, h2, h3, h4, h5, h6 {

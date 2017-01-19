@@ -1,10 +1,18 @@
 #main-content {
   padding-top: 1rem;
   padding-bottom: 2rem;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   &.flickr-main {
     background: $color-bg-black;
   }
   &.spotify-main {
     background: $color-bg-green;
   }
+}
+
+
+#contentRow {
+  justify-content: space-between;
 }

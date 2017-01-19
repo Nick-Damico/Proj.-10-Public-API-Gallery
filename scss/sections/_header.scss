@@ -1,9 +1,13 @@
 #main-header {
+  @extend %primary-bg;
   padding-top: 1.5rem;
   transition: padding .5s ease-out;
 
   .main-title {
     margin-bottom: 1rem;
+    @include col-md {
+        padding-bottom: 3rem;
+    }
   }
 
   @include col-md {
