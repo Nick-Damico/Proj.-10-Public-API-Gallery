@@ -16,13 +16,15 @@
 
   a {
     padding: 1rem 2rem;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
 
     &:hover,
     &:active {
       // nothing yet..
     }
     &.flickr-link {
-      background: $color-bg-black;
+      background: rgba($color-bg-black, .91);
       color: $color-text-light;
     }
 

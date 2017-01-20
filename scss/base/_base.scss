@@ -21,13 +21,6 @@ a {
     text-decoration: none;
 }
 
-a:hover img,
-a:active img,
-a:focus img {
-  opacity: 1;
-  box-shadow: 0px 0px 7px 3px rgba(119,120,125,0.74);
-}
-
 :focus {
   outline: none;
 }
@@ -36,11 +29,4 @@ ul {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-img {
-    max-width: 100%;
-    transition: box-shadow .5s ease-in-out,
-                width .5s ease-out,
-                height .5s ease-out;
 }

@@ -5,6 +5,8 @@
 
   .main-title {
     margin-bottom: 1rem;
+    color: $color-main-title;
+    text-shadow: 2px 2px 5px rgba($color-text-dark, .75);
     @include col-md {
         padding-bottom: 3rem;
     }
