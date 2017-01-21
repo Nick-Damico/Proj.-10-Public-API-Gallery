@@ -1,11 +1,15 @@
+/********************************
+  image styles
+********************************/
+
 .img-box {
   text-align: center;
   margin-top: 10px;
 
     img {
       @include col-md {
-        width: 200px;
-        height: 200px;
+        width: 223px;
+        height: 223px;
       }
   }
 

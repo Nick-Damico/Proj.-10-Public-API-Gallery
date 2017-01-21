@@ -26,6 +26,9 @@ ul {
   padding: 0;
   list-style: none; }
 
+.hidden {
+  display: none; }
+
 /****************************************
   Containers
 /***************************************/
@@ -48,6 +51,9 @@ ul {
   flex-wrap: wrap;
   justify-content: space-between; }
 
+/********************************
+  Column Classes
+********************************/
 .sm-col-50 {
   width: 48%; }
 
@@ -67,7 +73,17 @@ ul {
   background-repeat: no-repeat;
   background-position: center; }
 
+.search-filter-row .search-container button[type="submit"], .search-filter-row .btn-filter {
+  color: rgba(21, 21, 23, 0.95);
+  background: #23cf5f;
+  border: none;
+  border-radius: 15px;
+  padding: 6px 18px; }
+
 /* ---- ClearFix ---- */
+/********************************
+  #main-header Title Area
+********************************/
 #main-header {
   padding-top: 1.5rem;
   transition: padding .5s ease-out; }
@@ -84,6 +100,9 @@ ul {
   #main-header .main-title {
     text-align: center; }
 
+/********************************
+  #main-nav API Link tabs
+********************************/
 #main-nav {
   text-align: center; }
   @media (min-width: 460px) and (orientation: landscape) {
@@ -109,6 +128,9 @@ ul {
 #main-nav li:last-of-type {
   margin-left: -5px; }
 
+/********************************
+  #main-content Gallery Area
+********************************/
 #main-content {
   padding-top: 1rem;
   padding-bottom: 2rem;
@@ -123,6 +145,47 @@ ul {
 #contentRow {
   justify-content: space-between; }
 
+/********************
+  Search and filter
+********************/
+.search-filter-row {
+  flex-direction: row;
+  justify-content: space-around; }
+  @media (min-width: 460px) and (orientation: landscape) {
+    .search-filter-row {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #3A3A3D; } }
+  .search-filter-row .search-container {
+    width: 100%;
+    margin-bottom: 1rem; }
+    @media (min-width: 460px) and (orientation: landscape) {
+      .search-filter-row .search-container {
+        width: auto;
+        margin-bottom: 0;
+        margin-right: auto; } }
+    .search-filter-row .search-container input[type="search"] {
+      border-radius: 12px;
+      border: none;
+      color: rgba(32, 32, 34, 0.84);
+      padding: 6px 12px; }
+    .search-filter-row .search-container button[type="submit"] {
+      float: right; }
+      @media (min-width: 460px) and (orientation: landscape) {
+        .search-filter-row .search-container button[type="submit"] {
+          float: none; } }
+  .search-filter-row .btn-filter {
+    border-radius: 5px;
+    width: 48%; }
+    @media (min-width: 460px) and (orientation: landscape) {
+      .search-filter-row .btn-filter {
+        width: initial; } }
+  .search-filter-row #sortDate {
+    float: left;
+    margin-right: 8px; }
+  .search-filter-row #filter {
+    float: right; }
+
 /* ---- Font Styles---- */
 .main-title {
   color: #000;
@@ -134,13 +197,16 @@ ul {
     .main-title {
       font-size: 3rem; } }
 
+/********************************
+  image styles
+********************************/
 .img-box {
   text-align: center;
   margin-top: 10px; }
   @media (min-width: 460px) and (orientation: landscape) {
     .img-box img {
-      width: 200px;
-      height: 200px; } }
+      width: 223px;
+      height: 223px; } }
 
 img {
   max-width: 100%;
@@ -152,6 +218,9 @@ a:focus img {
   transform: scale(1.02);
   box-shadow: 0px 0px 4px 2px rgba(15, 15, 16, 0.95); }
 
+/********************************
+  Lightbox2 Style Overrides
+********************************/
 .lb-dataContainer .lb-data > .lb-details {
   font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif;
   font-size: 1.2rem; }
