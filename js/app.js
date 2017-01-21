@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  //  todo.
+    //  todo.
     //1. ** Style jqHXR.fail() msg block <span id="#failMsg">
 
     ////////////////////////////////////////
@@ -12,6 +12,8 @@ $(document).ready(function() {
     var photoHTML = '';
     var albumHTML = '';
     var Authorname = '';
+
+    var $searchContainer = $('.search-container');
 
     //  AJAX status messages for, Done(successful), Fail(not successful), Always(success or failure);
     var doneMsg = 'Request successfully completed';
@@ -26,7 +28,6 @@ $(document).ready(function() {
         'resizeDuration': 200,
         'wrapAround': true
     })
-
 
     ////////////////////////////////////////
     //  AJAX REQUEST FOR FLICKR PUBLIC API
@@ -44,6 +45,7 @@ $(document).ready(function() {
     //  Callback for AJAX Request
     function flickrCallback(data) {
         var photoLink = '';
+        photoHTML = '';
         $.each(data.items, function(i, photo) {
             if (i <= 8) {
                 photoLink = photo.media.m;
@@ -69,11 +71,15 @@ $(document).ready(function() {
         $('#contentRow').html(photoHTML);
     }; // End of Function
 
+
     //  .getJSON 'GET' Request returns JSON format
-    $.getJSON(flickrURL, flickrData, flickrCallback)
-       .done(console.log(doneMsg))
-       .fail('<span id="#failMSG">' + failMSG + '</span>')
-       .always(console.log(alwaysMsg + jqXHR.responseText));
+    function requestFlickr(data) {
+        $.getJSON(flickrURL, data, flickrCallback);
+    }
+
+    //  Call requestFlickr(data) on page load.
+    requestFlickr(flickrData);
+
 
 
     //////////////////////////////////////////
@@ -92,7 +98,7 @@ $(document).ready(function() {
 
     //  Callback for AJAX Request
     function spotifyCallback(data) {
-        console.log(data);
+        albumHTML = '';
         $.each(data.albums.items, function(i, album) {
             albumHTML += '<div class="img-box sm-col-50 md-col-1-3">';
             //  Build anchor tag
@@ -107,24 +113,45 @@ $(document).ready(function() {
             //  Close div tag
             albumHTML += '</div>';
         }); //  End of Loop
-        //  $('#contentRow').html(albumHTML);
+        $('#contentRow').html(albumHTML);
     }; // End of Function
 
     //  .getJSON 'GET' Request returns JSON format
-    $.getJSON(spotifyURL, spotifyData, spotifyCallback);
-        .done(console.log(doneMsg))
-        .fail('<span id="#failMSG">' + failMSG + '</span>')
-        .always(console.log(alwaysMsg + jqXHR.responseText));
+    function requestSpotify(data) {
+        $.getJSON(spotifyURL, data, spotifyCallback);
+    }
+
+    //  Call requestSpotify(data) on page load.
+    requestSpotify(spotifyData);
+
 
 
     ////////////////////////////////////////
-    //  EVENT HANDLERS
+    //  EVENT HANDLERS  (Navigation)
     ////////////////////////////////////////
+
+    ///////////////////////
+    //  ADD INPUT / SEARCH
+    ///////////////////////
+
+    // WHEN FLICKR / SPOTIFY TAB IS CLICKED input and submit button id and placeholder text updated.
+    function buildSearchFilterHTML(idName, placeHoldText) {
+        var searchFilterHTML = '';
+        //  input search
+        searchFilterHTML += '<input type="search" id="searchApi"';
+        searchFilterHTML += ' name="searchAPI" placeholder="' + placeHoldText + '" />';
+        searchFilterHTML += ' <button type="submit" id="' + idName + '" name="submitBtn">Search</button>';
+        $searchContainer.html(searchFilterHTML);
+    }
+
+
 
     //  FLICKR-LINK NAV 'CLICK'
     $('.flickr-link').on('click', function(e) {
         //  Prevent page load
         e.preventDefault();
+        //  Append flickr specific html input and button
+        buildSearchFilterHTML('flickrSubmitBtn', 'Search')
         //  Content replace with stored formatted HTML from API request.
         $('#contentRow').fadeOut('slow', function() {
             $(this).html(photoHTML)
@@ -142,10 +169,15 @@ $(document).ready(function() {
         });
     });
 
+
+
     //  SPOTIFY-LINK NAV 'CLICK'
     $('.spotify-link').on('click', function(e) {
         //  Prevent page load
         e.preventDefault();
+        //  Append html
+        buildSearchFilterHTML('spotifySubmitBtn', 'Album')
+
         //  Content replace with stored formatted HTML from API request.
         $('#contentRow').fadeOut('slow', function() {
             $(this).html(albumHTML).fadeIn('slow');
@@ -161,6 +193,54 @@ $(document).ready(function() {
                 .fadeIn('slow');
         });
     });
+
+
+    ///////////////////////////////////////////
+    //  EVENT HANDLERS  (Search/ Filter/ Sort)
+    ///////////////////////////////////////////
+
+    $(document).on('click', '#flickrSubmitBtn', function(e) {
+        // Prevent Default
+        e.preventDefault();
+        // input search element
+        var $input = $(this).prev();
+        //  Capture user search term
+        if ($input.val() !== '') {
+            searchData = $input.val();
+            //  Build request data
+            var requestData = {
+                tags: searchData,
+                format: 'json'
+            };
+            //  Request Flickr AJAX
+            requestFlickr(requestData);
+        }
+
+    });
+
+
+    $(document).on('click', '#spotifySubmitBtn', function(e) {
+        // Prevent Default
+        e.preventDefault();
+        // input search element
+        var $input = $(this).prev();
+        //  Checks if search is 'empty'
+        if ($input.val() !== '') {
+            //  Capture user search term
+            searchData = $input.val();
+            //  Build request data
+            var requestData = {
+                format: 'json',
+                q: searchData,
+                type: 'album',
+                limit: 9
+            };
+            //  Request Flickr AJAX
+            requestSpotify(requestData);
+        }
+    });
+
+
 
 
 }); //  END of ready
