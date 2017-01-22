@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     ////////////////////////////////////////
     //  Global Variables
@@ -6,25 +6,12 @@ $(document).ready(function() {
 
     //  Both AJAX API Requests are made at page load The HTML fomatted by callback functions are then stored in these variables and called on event "click" of navigation tab.
 
-    var photoHTML = '';
-    var albumHTML = '';
-    var Authorname = '';
+    var photoHTML = "";
+    var albumHTML = "";
+    var Authorname = "";
 
     var $searchContainer = $('.search-container');
 
-    //  AJAX status messages for, Done(successful), Fail(not successful), Always(success or failure);
-    var doneMsg = 'Request successfully completed';
-    var failMsg = 'Sorry, Request did not complete';
-    var alwaysMsg = 'Request Status : ';
-
-
-    ////////////////////////////////////////
-    //  LightBox Options
-    ////////////////////////////////////////
-    lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true
-    })
 
     ////////////////////////////////////////
     //  AJAX REQUEST FOR FLICKR PUBLIC API
@@ -42,14 +29,14 @@ $(document).ready(function() {
     //  Callback for AJAX Request
     function flickrCallback(data) {
         //  Anchor href full size photo for lightbox
-        var photoLink = '';
+        var photoLink = "";
         //  HTML to build gallery of API results
-        photoHTML = '';
-        $.each(data.items, function(i, photo) {
+        photoHTML = "";
+        $.each(data.items, function (i, photo) {
             if (i <= 8) {
                 photoLink = photo.media.m;
-                photoLink = photoLink.replace('_m', '');
-                // photoLink = photoLink.text().replace('_m', '');
+                photoLink = photoLink.replace('_m', "");
+                // photoLink = photoLink.text().replace('_m', "");
                 photoHTML += '<div class="img-box sm-col-50 md-col-1-3">';
                 //  Build anchor tag
                 photoHTML += '<a href="' + photoLink + '"';
@@ -69,7 +56,7 @@ $(document).ready(function() {
             }
         }); //  End of Loop
         $('#contentRow').html(photoHTML);
-    }; // End of Function
+    } // End of Function
 
 
     //  .getJSON 'GET' Request returns JSON format
@@ -98,9 +85,8 @@ $(document).ready(function() {
 
     //  Callback for AJAX Request
     function spotifyCallback(data) {
-      console.log(data);
-        albumHTML = '';
-        $.each(data.albums.items, function(i, album) {
+        albumHTML = "";
+        $.each(data.albums.items, function (i, album) {
             albumHTML += '<div class="img-box sm-col-50 md-col-1-3">';
             //  Build anchor tag
             albumHTML += '<a href="' + album.images[0].url + '"';
@@ -116,7 +102,7 @@ $(document).ready(function() {
             albumHTML += '</div>';
         }); //  End of Loop
         $('#contentRow').html(albumHTML);
-    }; // End of Function
+    } // End of Function
 
     //  .getJSON 'GET' Request returns JSON format
     function requestSpotify(data) {
@@ -133,8 +119,8 @@ $(document).ready(function() {
     ////////////////////////////////////////
 
     // WHEN FLICKR / SPOTIFY TAB IS CLICKED input and submit button id and placeholder text updated for correct API.
-    function buildSearchFilterHTML( idName, placeHoldText, firstBtnId, firstBtnText, secondBtnId, secondBtnText ) {
-        var searchFilterHTML = '';
+    function buildSearchFilterHTML(idName, placeHoldText, firstBtnId, firstBtnText, secondBtnId, secondBtnText) {
+        var searchFilterHTML = "";
         //  input search HTML
         searchFilterHTML += '<input type="search" id="searchApi"';
         searchFilterHTML += ' name="searchAPI" placeholder="' + placeHoldText + '" />';
@@ -149,22 +135,22 @@ $(document).ready(function() {
 
 
     //  FLICKR-LINK NAV "click"
-    $('.flickr-link').on("click", function(e) {
+    $('.flickr-link').on("click", function (e) {
         //  Prevent page load
         e.preventDefault();
         //  Append flickr specific html input and button
         buildSearchFilterHTML('flickrSearchBtn', 'Search', 'sortDate', 'Sort Date', 'sortTitle', 'Sort Title');
         //  Content replace with stored formatted HTML from API request.
-        $('#contentRow').fadeOut('slow', function() {
+        $('#contentRow').fadeOut('slow', function () {
             $(this).html(photoHTML)
                 .fadeIn('slow');
         });
         //  Hide Title, Update Title, then Show Title
-        $('.main-title').fadeOut('slow', function() {
+        $('.main-title').fadeOut('slow', function () {
             $(this).html('Flickr API Photo Feed');
         }).fadeIn('slow');
 
-        $('#main-content').fadeOut('slow', function() {
+        $('#main-content').fadeOut('slow', function () {
             $(this).removeClass('spotify-main')
                 .addClass('flickr-main')
                 .fadeIn('slow');
@@ -173,22 +159,22 @@ $(document).ready(function() {
 
 
     //  SPOTIFY-LINK NAV "click"
-    $('.spotify-link').on("click", function(e) {
+    $('.spotify-link').on("click", function (e) {
         //  Prevent page load
         e.preventDefault();
         //  Append html
         buildSearchFilterHTML('spotifySearchBtn', 'Album', 'sortAlbum', 'Sort Album', 'sortArtist', 'Sort Artist');
 
         //  Content replace with stored formatted HTML from API request.
-        $('#contentRow').fadeOut('slow', function() {
+        $('#contentRow').fadeOut('slow', function () {
             $(this).html(albumHTML).fadeIn('slow');
         });
         //  Hide Title, Update Title, then Show Title
-        $('.main-title').fadeOut('slow', function() {
+        $('.main-title').fadeOut('slow', function () {
             $(this).html('Spotify API Album Feed');
         }).fadeIn('slow');
 
-        $('#main-content').fadeOut('slow', function() {
+        $('#main-content').fadeOut('slow', function () {
             $(this).removeClass('flickr-main')
                 .addClass('spotify-main')
                 .fadeIn('slow');
@@ -201,13 +187,14 @@ $(document).ready(function() {
     ////////////////////////////////////////
 
     //  flickr search input btn
-    $(document).on("click", '#flickrSearchBtn', function(e) {
+    $(document).on("click", '#flickrSearchBtn', function (e) {
+        var searchData;
         // Prevent Default
         e.preventDefault();
         // input search element
         var $input = $(this).prev();
         //  Capture user search term
-        if ($input.val() !== '') {
+        if ($input.val() !== "") {
             searchData = $input.val();
             //  Build request data
             var requestData = {
@@ -217,18 +204,19 @@ $(document).ready(function() {
             //  Request Flickr AJAX
             requestFlickr(requestData);
         }
-        $input.val('');
+        $input.val("");
 
     });
 
     //  spotify search input btn
-    $(document).on("click", '#spotifySearchBtn', function(e) {
+    $(document).on("click", '#spotifySearchBtn', function (e) {
+        var searchData;
         // Prevent Default
         e.preventDefault();
         // input search element
         var $input = $(this).prev();
         //  Checks if search is 'empty'
-        if ($input.val() !== '') {
+        if ($input.val() !== "") {
             //  Capture user search term
             searchData = $input.val();
             //  Build request data
@@ -241,7 +229,7 @@ $(document).ready(function() {
             //  Request Flickr AJAX
             requestSpotify(requestData);
         }
-        $input.val('');
+        $input.val("");
     });
 
 
@@ -253,23 +241,24 @@ $(document).ready(function() {
     //  function for sorting gallery items.
 
     function sorting(dataType) {
+        var contentA;
+        var contentB;
         //  Anchor element References stored
         var $anchors = $('#contentRow div').find('a');
         //  Anchor elements Sorted by attribute 'data-name' from low to high.
-        var arr = $anchors.sort(function(a, b) {
+        var arr = $anchors.sort(function (a, b) {
             if (typeof a === 'number' && typeof b === 'number') {
-                var contentA = parseInt($(a).attr(dataType));
-                var contentB = parseInt($(b).attr(dataType));
+                contentA = parseInt($(a).attr(dataType));
+                contentB = parseInt($(b).attr(dataType));
             } else {
-                var contentA = $(a).attr(dataType);
-                var contentB = $(b).attr(dataType);
-                console.log(contentA);
+                contentA = $(a).attr(dataType);
+                contentB = $(b).attr(dataType);
             }
             //  Returns numerically sorted array of anachors
             return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
         });
         //  Iterates through divs nested in #contentRow container appending each of the sorted anchors in order.
-        $('#contentRow div').hide().each(function(index) {
+        $('#contentRow div').hide().each(function (index) {
             $(this).append(arr[index]);
         }).fadeIn('slow');
     }
@@ -280,22 +269,22 @@ $(document).ready(function() {
     //  Sort and Compare click events
     ////////////////////////////////////////
 
-    $(document).on("click", '#sortDate', function() {
+    $(document).on("click", '#sortDate', function () {
         //  call to sorting, function argument sorts items by attribute data-date
         sorting('data-date');
     });
 
-    $(document).on("click", '#sortTitle', function() {
+    $(document).on("click", '#sortTitle', function () {
         //  call to sorting, function argument sorts items by attribute data-title
         sorting('data-title');
     });
 
-    $(document).on("click", '#sortAlbum', function() {
+    $(document).on("click", '#sortAlbum', function () {
         //  call to sorting, function argument sorts items by attribute data-title
         sorting('data-title');
     });
 
-    $(document).on("click", '#sortArtist', function() {
+    $(document).on("click", '#sortArtist', function () {
         //  call to sorting, function argument sorts items by attribute data-title
         sorting('data-artist');
     });
