@@ -1,13 +1,10 @@
 $(document).ready(function() {
 
-    //  todo.
-    //1. ** Style jqHXR.fail() msg block <span id="#failMsg">
-
     ////////////////////////////////////////
     //  Global Variables
     ////////////////////////////////////////
 
-    //  Both AJAX API Requests are made at page load The HTML fomatted by callback functions are then stored in these variables and called on event 'click' of navigation tab.
+    //  Both AJAX API Requests are made at page load The HTML fomatted by callback functions are then stored in these variables and called on event "click" of navigation tab.
 
     var photoHTML = '';
     var albumHTML = '';
@@ -44,7 +41,9 @@ $(document).ready(function() {
 
     //  Callback for AJAX Request
     function flickrCallback(data) {
+        //  Anchor href full size photo for lightbox
         var photoLink = '';
+        //  HTML to build gallery of API results
         photoHTML = '';
         $.each(data.items, function(i, photo) {
             if (i <= 8) {
@@ -56,7 +55,8 @@ $(document).ready(function() {
                 photoHTML += '<a href="' + photoLink + '"';
                 photoHTML += ' data-lightbox="image-' + 1 + '"';
                 photoHTML += ' data-title="' + photo.title + '"';
-                photoHTML += ' title="' + photo.date_taken + '">';
+                photoHTML += ' data-date="' + photo.date_taken + '"';
+                photoHTML += ' data-author="' + photo.author + '">';
                 // photoHTML += ' data-title="Photo-' + i + '">';
                 //  Build img tag
                 photoHTML += '<img src="' + photo.media.m + '"';
@@ -98,13 +98,15 @@ $(document).ready(function() {
 
     //  Callback for AJAX Request
     function spotifyCallback(data) {
+      console.log(data);
         albumHTML = '';
         $.each(data.albums.items, function(i, album) {
             albumHTML += '<div class="img-box sm-col-50 md-col-1-3">';
             //  Build anchor tag
             albumHTML += '<a href="' + album.images[0].url + '"';
             albumHTML += ' data-lightbox="image-' + 1 + '"';
-            albumHTML += ' data-title="' + album.name + '">';
+            albumHTML += ' data-title="' + album.name + '"';
+            albumHTML += ' data-artist="' + album.artists[0].name + '">';
             //  Build img tag
             albumHTML += '<img src="' + album.images[1].url + '"';
             albumHTML += ' alt="' + album.name + '">';
@@ -127,31 +129,31 @@ $(document).ready(function() {
 
 
     ////////////////////////////////////////
-    //  EVENT HANDLERS  (Navigation)
+    //  Navigation Tabs
     ////////////////////////////////////////
 
-    ///////////////////////
-    //  ADD INPUT / SEARCH
-    ///////////////////////
-
-    // WHEN FLICKR / SPOTIFY TAB IS CLICKED input and submit button id and placeholder text updated.
-    function buildSearchFilterHTML(idName, placeHoldText) {
+    // WHEN FLICKR / SPOTIFY TAB IS CLICKED input and submit button id and placeholder text updated for correct API.
+    function buildSearchFilterHTML( idName, placeHoldText, firstBtnId, firstBtnText, secondBtnId, secondBtnText ) {
         var searchFilterHTML = '';
-        //  input search
+        //  input search HTML
         searchFilterHTML += '<input type="search" id="searchApi"';
         searchFilterHTML += ' name="searchAPI" placeholder="' + placeHoldText + '" />';
         searchFilterHTML += ' <button type="submit" id="' + idName + '" name="submitBtn">Search</button>';
+        //  Append search HTML to #searchContainer div
         $searchContainer.html(searchFilterHTML);
+        // //  Update Sort buttons for correct API
+        $('.btn-sort-1').attr('id', firstBtnId).text(firstBtnText);
+        $('.btn-sort-2').attr('id', secondBtnId).text(secondBtnText);
+
     }
 
 
-
-    //  FLICKR-LINK NAV 'CLICK'
-    $('.flickr-link').on('click', function(e) {
+    //  FLICKR-LINK NAV "click"
+    $('.flickr-link').on("click", function(e) {
         //  Prevent page load
         e.preventDefault();
         //  Append flickr specific html input and button
-        buildSearchFilterHTML('flickrSubmitBtn', 'Search')
+        buildSearchFilterHTML('flickrSearchBtn', 'Search', 'sortDate', 'Sort Date', 'sortTitle', 'Sort Title');
         //  Content replace with stored formatted HTML from API request.
         $('#contentRow').fadeOut('slow', function() {
             $(this).html(photoHTML)
@@ -170,13 +172,12 @@ $(document).ready(function() {
     });
 
 
-
-    //  SPOTIFY-LINK NAV 'CLICK'
-    $('.spotify-link').on('click', function(e) {
+    //  SPOTIFY-LINK NAV "click"
+    $('.spotify-link').on("click", function(e) {
         //  Prevent page load
         e.preventDefault();
         //  Append html
-        buildSearchFilterHTML('spotifySubmitBtn', 'Album')
+        buildSearchFilterHTML('spotifySearchBtn', 'Album', 'sortAlbum', 'Sort Album', 'sortArtist', 'Sort Artist');
 
         //  Content replace with stored formatted HTML from API request.
         $('#contentRow').fadeOut('slow', function() {
@@ -195,11 +196,12 @@ $(document).ready(function() {
     });
 
 
-    ///////////////////////////////////////////
-    //  EVENT HANDLERS  (Search/ Filter/ Sort)
-    ///////////////////////////////////////////
+    ////////////////////////////////////////
+    //  Search input
+    ////////////////////////////////////////
 
-    $(document).on('click', '#flickrSubmitBtn', function(e) {
+    //  flickr search input btn
+    $(document).on("click", '#flickrSearchBtn', function(e) {
         // Prevent Default
         e.preventDefault();
         // input search element
@@ -215,11 +217,12 @@ $(document).ready(function() {
             //  Request Flickr AJAX
             requestFlickr(requestData);
         }
+        $input.val('');
 
     });
 
-
-    $(document).on('click', '#spotifySubmitBtn', function(e) {
+    //  spotify search input btn
+    $(document).on("click", '#spotifySearchBtn', function(e) {
         // Prevent Default
         e.preventDefault();
         // input search element
@@ -238,8 +241,64 @@ $(document).ready(function() {
             //  Request Flickr AJAX
             requestSpotify(requestData);
         }
+        $input.val('');
     });
 
+
+
+    ///////////////////////////////////////////
+    //  EVENT HANDLERS  ( Sort Buttons )
+    ///////////////////////////////////////////
+
+    //  function for sorting gallery items.
+
+    function sorting(dataType) {
+        //  Anchor element References stored
+        var $anchors = $('#contentRow div').find('a');
+        //  Anchor elements Sorted by attribute 'data-name' from low to high.
+        var arr = $anchors.sort(function(a, b) {
+            if (typeof a === 'number' && typeof b === 'number') {
+                var contentA = parseInt($(a).attr(dataType));
+                var contentB = parseInt($(b).attr(dataType));
+            } else {
+                var contentA = $(a).attr(dataType);
+                var contentB = $(b).attr(dataType);
+                console.log(contentA);
+            }
+            //  Returns numerically sorted array of anachors
+            return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+        });
+        //  Iterates through divs nested in #contentRow container appending each of the sorted anchors in order.
+        $('#contentRow div').hide().each(function(index) {
+            $(this).append(arr[index]);
+        }).fadeIn('slow');
+    }
+
+
+
+    ////////////////////////////////////////
+    //  Sort and Compare click events
+    ////////////////////////////////////////
+
+    $(document).on("click", '#sortDate', function() {
+        //  call to sorting, function argument sorts items by attribute data-date
+        sorting('data-date');
+    });
+
+    $(document).on("click", '#sortTitle', function() {
+        //  call to sorting, function argument sorts items by attribute data-title
+        sorting('data-title');
+    });
+
+    $(document).on("click", '#sortAlbum', function() {
+        //  call to sorting, function argument sorts items by attribute data-title
+        sorting('data-title');
+    });
+
+    $(document).on("click", '#sortArtist', function() {
+        //  call to sorting, function argument sorts items by attribute data-title
+        sorting('data-artist');
+    });
 
 
 
