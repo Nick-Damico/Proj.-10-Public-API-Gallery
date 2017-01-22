@@ -52,6 +52,7 @@
 
         button[type="submit"] {
             @extend %btn;
+            background: #dfea2a;
             float: right;
             @include col-md {
                 float: none;
@@ -61,6 +62,7 @@
 
     .btn-filter {
         @extend %btn;
+        background: #dfea2a;
         border-radius: 5px;
         width: 48%;
         @include col-md {
@@ -68,7 +70,8 @@
         };
     }
 
-    #sortDate {
+    #sortDate,
+    #sortAlbum {
         float: left;
         margin-right: 8px;
     }

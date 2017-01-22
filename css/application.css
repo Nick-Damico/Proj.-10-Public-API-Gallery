@@ -170,17 +170,20 @@ ul {
       color: rgba(32, 32, 34, 0.84);
       padding: 6px 12px; }
     .search-filter-row .search-container button[type="submit"] {
+      background: #dfea2a;
       float: right; }
       @media (min-width: 460px) and (orientation: landscape) {
         .search-filter-row .search-container button[type="submit"] {
           float: none; } }
   .search-filter-row .btn-filter {
+    background: #dfea2a;
     border-radius: 5px;
     width: 48%; }
     @media (min-width: 460px) and (orientation: landscape) {
       .search-filter-row .btn-filter {
         width: initial; } }
-  .search-filter-row #sortDate {
+  .search-filter-row #sortDate,
+  .search-filter-row #sortAlbum {
     float: left;
     margin-right: 8px; }
   .search-filter-row #filter {
