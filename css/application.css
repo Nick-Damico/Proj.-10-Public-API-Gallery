@@ -38,6 +38,12 @@ ul {
   margin: 0 auto;
   width: 90%;
   max-width: 700px; }
+  .wrapper.flickr-inner {
+    background: rgba(21, 21, 23, 0.95);
+    padding: 1rem; }
+  .wrapper.spotify-inner {
+    background: #23cf5f;
+    padding: 1rem; }
 
 .container:first-of-type {
   margin-top: 0; }
@@ -172,7 +178,7 @@ ul {
     #main-nav a:hover, #main-nav a:active {
       /* nothing yet..*/ }
     #main-nav a.flickr-link {
-      background: rgba(21, 21, 23, 0.91);
+      background: rgba(21, 21, 23, 0.98);
       color: #f2f2f2; }
     #main-nav a.spotify-link {
       background: #23cf5f;
@@ -186,8 +192,6 @@ ul {
   #main-content Gallery Area
 ********************************/
 #main-content {
-  padding-top: 1rem;
-  padding-bottom: 2rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -195,9 +199,9 @@ ul {
   -ms-flex-pack: center;
   justify-content: center; }
   #main-content.flickr-main {
-    background: rgba(21, 21, 23, 0.95); }
+    background: #252525; }
   #main-content.spotify-main {
-    background: #23cf5f; }
+    background: #2ce46c; }
 
 #contentRow {
   -webkit-box-pack: justify;

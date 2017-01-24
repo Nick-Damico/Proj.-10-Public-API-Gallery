@@ -14,11 +14,12 @@ $(document).ready(function() {
     var $contentDiv = $('#contentRow');
     var $mainTitle = $('.main-title');
     var $mainContent = $('#main-content');
+    var $mainWrapper = $('#mainContentWrapper');
     ////////////////////////////////////////
     //  AJAX REQUEST FOR FLICKR PUBLIC API
     ////////////////////////////////////////
 
-    $contentDiv.hide();
+    // $contentDiv.hide();
 
     //  URL for AJAX JSON Request
     var flickrURL = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
@@ -128,12 +129,12 @@ $(document).ready(function() {
         //  Append search HTML to #searchContainer div
         $searchContainer.html(searchFilterHTML);
         // //  Update Sort buttons for correct API
-        $('.btn-sort-1').attr('id', firstBtnId).fadeOut(function () {
-          $(this).text(firstBtnText).fadeIn();
+        $('.btn-sort-1').attr('id', firstBtnId).fadeOut(function() {
+            $(this).text(firstBtnText).fadeIn();
         });
 
-        $('.btn-sort-2').attr('id', secondBtnId).fadeOut(function () {
-          $(this).text(secondBtnText).fadeIn();
+        $('.btn-sort-2').attr('id', secondBtnId).fadeOut(function() {
+            $(this).text(secondBtnText).fadeIn();
         });
 
     }
@@ -155,10 +156,11 @@ $(document).ready(function() {
             $(this).removeClass('spotify').addClass('flickr').html('Flickr');
         }).fadeIn('slow');
 
-        $mainContent.fadeOut('slow', function() {
-            $(this).removeClass('spotify-main')
-                .addClass('flickr-main')
+        $mainWrapper.fadeOut('slow', function() {
+            $(this).removeClass('spotify-inner')
+                .addClass('flickr-inner')
                 .fadeIn('slow');
+            $('#main-content').addClass('flickr-main').removeClass('spotify-main');
         });
     });
 
@@ -181,10 +183,11 @@ $(document).ready(function() {
             $(this).removeClass('flickr').addClass('spotify').html('Spotify');
         }).fadeIn('slow');
 
-        $mainContent.fadeOut('slow', function() {
-            $(this).removeClass('flickr-main')
-                .addClass('spotify-main')
+        $mainWrapper.fadeOut('slow', function() {
+            $(this).removeClass('flickr-inner')
+                .addClass('spotify-inner')
                 .fadeIn('slow');
+            $('#main-content').addClass('spotify-main').removeClass('flickr-main');
         });
     });
 
@@ -287,12 +290,12 @@ $(document).ready(function() {
     });
 
     $(document).on("click", '#sortAlbum', function() {
-        //  call to sorting, function argument sorts items by attribute data-title
+        //  call to sorting, function argument sorts items by attribute data-title (album title)
         sorting('data-title');
     });
 
     $(document).on("click", '#sortArtist', function() {
-        //  call to sorting, function argument sorts items by attribute data-title
+        //  call to sorting, function argument sorts items by attribute data-artist
         sorting('data-artist');
     });
 
