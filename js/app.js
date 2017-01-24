@@ -19,10 +19,10 @@ $(document).ready(function() {
     //  AJAX REQUEST FOR FLICKR PUBLIC API
     ////////////////////////////////////////
 
-    // $contentDiv.hide();
+    $contentDiv.hide();
 
     //  URL for AJAX JSON Request
-    var flickrURL = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+    var flickrURL = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 
     //  DATA for AJAX Request
     var flickrData = {
@@ -112,7 +112,6 @@ $(document).ready(function() {
     function requestSpotify(data) {
         $.getJSON(spotifyURL, data, spotifyCallback);
     }
-
 
 
     ////////////////////////////////////////
