@@ -128,8 +128,13 @@ $(document).ready(function() {
         //  Append search HTML to #searchContainer div
         $searchContainer.html(searchFilterHTML);
         // //  Update Sort buttons for correct API
-        $('.btn-sort-1').attr('id', firstBtnId).text(firstBtnText);
-        $('.btn-sort-2').attr('id', secondBtnId).text(secondBtnText);
+        $('.btn-sort-1').attr('id', firstBtnId).fadeOut(function () {
+          $(this).text(firstBtnText).fadeIn();
+        });
+
+        $('.btn-sort-2').attr('id', secondBtnId).fadeOut(function () {
+          $(this).text(secondBtnText).fadeIn();
+        });
 
     }
 
