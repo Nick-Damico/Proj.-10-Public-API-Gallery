@@ -167,23 +167,23 @@ $(document).ready(function() {
 
     //  SPOTIFY-LINK NAV "click"
     $('.spotify-link').on("click", function(e) {
-        //  Call requestSpotify(data)
-        requestSpotify(spotifyData);
         //  Prevent page load
         e.preventDefault();
         //  Append html
         buildSearchFilterHTML('spotifySearchBtn', 'Album/ Artist', 'sortAlbum', 'Sort Album', 'sortArtist', 'Sort Artist');
-
         //  Content replace with stored formatted HTML from API request.
-        $contentDiv.fadeOut('slow', function() {
-            $(this).html(albumHTML).fadeIn('slow');
+        $contentDiv.fadeOut('slow', function () {
+          //  Call requestSpotify(data)
+          requestSpotify(spotifyData);
+          $(this).html(albumHTML)
+                 .fadeIn('slow');
         });
         //  Hide Title, Update Title, then Show Title
-        $('.main-title span').fadeOut('slow', function() {
+        $('.main-title span').fadeOut('slow', function () {
             $(this).removeClass('flickr').addClass('spotify').html('Spotify');
         }).fadeIn('slow');
 
-        $mainWrapper.fadeOut('slow', function() {
+        $mainWrapper.fadeOut('slow', function () {
             $(this).removeClass('flickr-inner')
                 .addClass('spotify-inner')
                 .fadeIn('slow');

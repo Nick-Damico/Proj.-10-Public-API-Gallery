@@ -21,6 +21,10 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
 }
+
+.text-hidden {
+  text-indent: -9999px;
+}
 /********************
   Search and filter
 ********************/
