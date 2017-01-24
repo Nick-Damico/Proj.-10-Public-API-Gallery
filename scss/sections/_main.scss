@@ -48,8 +48,6 @@
             width: auto;
             margin-bottom: 0;
             margin-right: auto;
-            /* display: flex;*/
-            /* flex-direction: row;*/
         };
 
         input[type="search"] {
@@ -61,6 +59,8 @@
             transition: -webkit-transform .5s ease-out;
             transition: transform .5s ease-out;
             transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+            width: 60%;
+            height: 39px;
         }
 
         button[type="submit"] {

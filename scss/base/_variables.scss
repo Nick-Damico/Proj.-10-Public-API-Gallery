@@ -62,5 +62,5 @@ $path-img  : '../img';
 // Fixes layout issue with project pic layout
 $brk-2col-layout : '(min-width: 460px) and (max-width:1023px)';
 
-$brk-md :  '(min-width: 460px) and (orientation: landscape)';
-$brk-wide   :  '(min-width: 1024px)';
+$brk-md :  '(min-width: 600px) and (orientation: landscape)';
+$brk-wide   :  '(min-width: 800px)';

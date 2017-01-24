@@ -74,7 +74,7 @@ ul {
 .sm-col-50 {
   width: 48%; }
 
-@media (min-width: 460px) and (orientation: landscape) {
+@media (min-width: 600px) and (orientation: landscape) {
   .md-col-1-3 {
     width: 31.73333%; } }
 
@@ -99,7 +99,7 @@ ul {
   font-weight: 700;
   margin-left: 24px;
   position: relative; }
-  @media (min-width: 460px) and (orientation: landscape) {
+  @media (min-width: 600px) and (orientation: landscape) {
     #main-header .main-title > span.flickr, #main-header .main-title > span.spotify {
       margin-left: 40px; } }
 
@@ -111,7 +111,7 @@ ul {
   left: -25px;
   width: 25px;
   top: -2px; }
-  @media (min-width: 460px) and (orientation: landscape) {
+  @media (min-width: 600px) and (orientation: landscape) {
     #main-header .main-title .flickr::before, #main-header .main-title .spotify::before {
       width: 35px;
       height: 35px;
@@ -143,7 +143,7 @@ ul {
   #main-header .main-title {
     margin-bottom: 1rem;
     color: #000; }
-    @media (min-width: 460px) and (orientation: landscape) {
+    @media (min-width: 600px) and (orientation: landscape) {
       #main-header .main-title {
         padding-bottom: 3rem; } }
     #main-header .main-title > span.flickr {
@@ -154,7 +154,7 @@ ul {
       content: url(../img/logos/flickr-logo.svg); }
     #main-header .main-title .spotify::before {
       content: url(../img/logos/spotify-logo.svg); }
-  @media (min-width: 460px) and (orientation: landscape) {
+  @media (min-width: 600px) and (orientation: landscape) {
     #main-header {
       padding-top: 2rem; } }
   #main-header .main-title {
@@ -165,7 +165,7 @@ ul {
 ********************************/
 #main-nav {
   text-align: center; }
-  @media (min-width: 460px) and (orientation: landscape) {
+  @media (min-width: 600px) and (orientation: landscape) {
     #main-nav {
       text-align: left; } }
   #main-nav ul li {
@@ -221,7 +221,7 @@ ul {
   flex-direction: row;
   -ms-flex-pack: distribute;
   justify-content: space-around; }
-  @media (min-width: 460px) and (orientation: landscape) {
+  @media (min-width: 600px) and (orientation: landscape) {
     .search-filter-row {
       padding-top: 1rem;
       padding-bottom: 1rem;
@@ -229,13 +229,11 @@ ul {
   .search-filter-row .search-container {
     width: 100%;
     margin-bottom: 1rem; }
-    @media (min-width: 460px) and (orientation: landscape) {
+    @media (min-width: 600px) and (orientation: landscape) {
       .search-filter-row .search-container {
         width: auto;
         margin-bottom: 0;
-        margin-right: auto;
-        /* display: flex;*/
-        /* flex-direction: row;*/ } }
+        margin-right: auto; } }
     .search-filter-row .search-container input[type="search"] {
       border-radius: 12px;
       border: none;
@@ -244,16 +242,18 @@ ul {
       -webkit-transition: -webkit-transform .5s ease-out;
       transition: -webkit-transform .5s ease-out;
       transition: transform .5s ease-out;
-      transition: transform .5s ease-out, -webkit-transform .5s ease-out; }
+      transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+      width: 60%;
+      height: 39px; }
     .search-filter-row .search-container button[type="submit"] {
       float: right; }
-      @media (min-width: 460px) and (orientation: landscape) {
+      @media (min-width: 600px) and (orientation: landscape) {
         .search-filter-row .search-container button[type="submit"] {
           float: none; } }
   .search-filter-row .btn-filter {
     border-radius: 5px;
     width: 48%; }
-    @media (min-width: 460px) and (orientation: landscape) {
+    @media (min-width: 600px) and (orientation: landscape) {
       .search-filter-row .btn-filter {
         width: initial; } }
   .search-filter-row #sortDate,
@@ -270,7 +270,7 @@ ul {
   font-weight: 300;
   line-height: 1.2;
   transition: font-size .8s ease-out; }
-  @media (min-width: 460px) and (orientation: landscape) {
+  @media (min-width: 600px) and (orientation: landscape) {
     .main-title {
       font-size: 3rem; } }
 
@@ -280,10 +280,10 @@ ul {
 .img-box {
   text-align: center;
   margin-top: 10px; }
-  @media (min-width: 460px) and (orientation: landscape) {
+  @media (min-width: 800px) {
     .img-box img {
-      width: 223px;
-      height: 223px; } }
+      width: 210px;
+      height: 210px; } }
 
 img {
   max-width: 100%;

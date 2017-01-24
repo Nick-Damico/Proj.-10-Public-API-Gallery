@@ -19,7 +19,7 @@
   }
 }
 
-@mixin desktop {
+@mixin col-large {
   @media #{$brk-wide} {
     @content;
   }

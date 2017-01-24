@@ -7,10 +7,11 @@
   margin-top: 10px;
 
     img {
-      @include col-md {
-        width: 223px;
-        height: 223px;
+      @include col-large {
+        width: 210px;
+        height: 210px;
       }
+
   }
 
   }
