@@ -6,7 +6,6 @@
     padding-bottom: 2rem;
     align-items: center;
     justify-content: center;
-    height: 100%;
 
     &.flickr-main {
         background: $color-bg-black;
@@ -52,7 +51,6 @@
 
         button[type="submit"] {
             @extend %btn;
-            background: #dfea2a;
             float: right;
             @include col-md {
                 float: none;
@@ -62,7 +60,6 @@
 
     .btn-filter {
         @extend %btn;
-        background: #dfea2a;
         border-radius: 5px;
         width: 48%;
         @include col-md {

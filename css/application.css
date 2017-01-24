@@ -8,7 +8,8 @@ body {
   font-size: 16px;
   line-height: 1.6;
   font-weight: 100;
-  color: #000; }
+  color: #000;
+  height: 100%; }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
@@ -73,12 +74,35 @@ ul {
   background-repeat: no-repeat;
   background-position: center; }
 
+#main-header .main-title > span.flickr, #main-header .main-title > span.spotify {
+  font-weight: 700;
+  margin-left: 24px;
+  position: relative; }
+  @media (min-width: 460px) and (orientation: landscape) {
+    #main-header .main-title > span.flickr, #main-header .main-title > span.spotify {
+      margin-left: 40px; } }
+
+#main-header .main-title .flickr::before, #main-header .main-title .spotify::before {
+  display: inline-block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: -25px;
+  width: 25px;
+  top: -2px; }
+  @media (min-width: 460px) and (orientation: landscape) {
+    #main-header .main-title .flickr::before, #main-header .main-title .spotify::before {
+      width: 35px;
+      height: 35px;
+      left: -35px;
+      top: -4px; } }
+
 .search-filter-row .search-container button[type="submit"], .search-filter-row .btn-filter {
   color: rgba(21, 21, 23, 0.95);
-  background: #23cf5f;
-  border: none;
+  background: rgba(230, 230, 219, 0.38);
+  border: 2px solid black;
   border-radius: 15px;
-  padding: 6px 18px; }
+  padding: 10px 18px; }
 
 /* ---- ClearFix ---- */
 /********************************
@@ -87,13 +111,23 @@ ul {
 #main-header {
   padding-top: 1.5rem;
   transition: padding .5s ease-out; }
+  #main-header .main-logo {
+    width: 35px;
+    height: 35px; }
   #main-header .main-title {
     margin-bottom: 1rem;
-    color: #E9E4E4;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75); }
+    color: #000; }
     @media (min-width: 460px) and (orientation: landscape) {
       #main-header .main-title {
         padding-bottom: 3rem; } }
+    #main-header .main-title > span.flickr {
+      color: #f2f2f2; }
+    #main-header .main-title > span.spotify {
+      color: #23cf5f; }
+    #main-header .main-title .flickr::before {
+      content: url(../img/logos/flickr-logo.svg); }
+    #main-header .main-title .spotify::before {
+      content: url(../img/logos/spotify-logo.svg); }
   @media (min-width: 460px) and (orientation: landscape) {
     #main-header {
       padding-top: 2rem; } }
@@ -109,10 +143,8 @@ ul {
     #main-nav {
       text-align: left; } }
   #main-nav ul li {
-    display: inline-block; }
-    @media (min-width: 460px) and (orientation: landscape) {
-      #main-nav ul li {
-        margin-left: .8rem; } }
+    display: inline-block;
+    width: 50%; }
   #main-nav a {
     padding: 1rem 2rem;
     border-top-left-radius: 9px;
@@ -135,8 +167,7 @@ ul {
   padding-top: 1rem;
   padding-bottom: 2rem;
   align-items: center;
-  justify-content: center;
-  height: 100%; }
+  justify-content: center; }
   #main-content.flickr-main {
     background: rgba(21, 21, 23, 0.95); }
   #main-content.spotify-main {
@@ -170,13 +201,11 @@ ul {
       color: rgba(32, 32, 34, 0.84);
       padding: 6px 12px; }
     .search-filter-row .search-container button[type="submit"] {
-      background: #dfea2a;
       float: right; }
       @media (min-width: 460px) and (orientation: landscape) {
         .search-filter-row .search-container button[type="submit"] {
           float: none; } }
   .search-filter-row .btn-filter {
-    background: #dfea2a;
     border-radius: 5px;
     width: 48%; }
     @media (min-width: 460px) and (orientation: landscape) {

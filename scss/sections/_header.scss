@@ -6,13 +6,38 @@
   padding-top: 1.5rem;
   transition: padding .5s ease-out;
 
+  .main-logo {
+    width: 35px;
+    height: 35px;
+  }
+
   .main-title {
     margin-bottom: 1rem;
-    color: $color-main-title;
-    text-shadow: 2px 2px 5px rgba($color-text-dark, .75);
+    color: $color-text-dark;
+    // text-shadow: 2px 2px 5px rgba($color-text-dark, .75);
     @include col-md {
         padding-bottom: 3rem;
     }
+
+    > span.flickr {
+      @extend %logo-text;
+      color: $color-text-light;
+    }
+    > span.spotify {
+      @extend %logo-text;
+      color: $spotify-green;
+    }
+
+    .flickr::before {
+      content: url(../img/logos/flickr-logo.svg);
+      @extend %before-logo;
+    }
+
+    .spotify::before {
+      @extend %before-logo;
+      content: url(../img/logos/spotify-logo.svg);
+    }
+
   }
 
   @include col-md {

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="Treehouse Front End Techdegree Project 10 Public API Gallery" name="description">
     <meta name="author" content="Nicholas D'Amico | nickalan82@icloud.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techdegree Proj. 10 : Public API Gallery</title>
     <!-- STYLESHEETS -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
@@ -37,7 +37,9 @@ copies or substantial portions of the Software.
 <body>
 
     <header id="main-header">
-        <h1 class="main-title">Flickr API Photo Feed</h1>
+        <!-- !Deprecated! <h1 class="main-title">Built with <img class="main-logo" src="img/logos/flickr-logo.svg" alt="logo" />Flickr API</h1> -->
+          <!-- span add .spotify class for spotify logo, .flickr for flickr logo -->
+          <h1 class="main-title">Built with <span class="flickr">Flickr</span>  API</h1>
         <div class="wrapper">
             <nav id="main-nav">
                 <ul>
@@ -51,7 +53,7 @@ copies or substantial portions of the Software.
     </header>
     <!-- End of header -->
     <main id="main-content" class="main flickr-main">
-        <div class="wrapper">
+        <div class="wrapper main-wrapper">
             <!-- Search Bar and Filter -->
             <div class="container">
                 <div class="row search-filter-row flex-row">
@@ -60,8 +62,8 @@ copies or substantial portions of the Software.
                         <button type="submit" id="flickrSearchBtn" name="submitBtn">Search</button>
                     </div>
                     <!-- BUTTON TYPE ???? -->
-                    <button class="btn-filter btn-sort-1" type="" id="sortDate" name="sortDate">Sort Date</button>
-                    <button class="btn-filter btn-sort-2" type="" id="sortTitle" name="sortTitle">Sort Title</button>
+                    <button class="btn-filter btn-sort-1" type="button" id="sortDate" name="sortDate">Sort Date</button>
+                    <button class="btn-filter btn-sort-2" type="button" id="sortTitle" name="sortTitle">Sort Title</button>
 
                 </div>
                 <!-- .row -->
@@ -135,10 +137,6 @@ copies or substantial portions of the Software.
         <!-- End of .Wrapper -->
     </main>
     <!-- End of #main-content -->
-
-
-
-    <!-- SCRIPTS -->
 
 </body>
 

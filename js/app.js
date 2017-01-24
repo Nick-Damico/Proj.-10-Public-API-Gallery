@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     ////////////////////////////////////////
     //  Global Variables
@@ -11,11 +11,14 @@ $(document).ready(function () {
     var Authorname = "";
 
     var $searchContainer = $('.search-container');
-
-
+    var $contentDiv = $('#contentRow');
+    var $mainTitle = $('.main-title');
+    var $mainContent = $('#main-content');
     ////////////////////////////////////////
     //  AJAX REQUEST FOR FLICKR PUBLIC API
     ////////////////////////////////////////
+
+    $contentDiv.hide();
 
     //  URL for AJAX JSON Request
     var flickrURL = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
@@ -32,7 +35,7 @@ $(document).ready(function () {
         var photoLink = "";
         //  HTML to build gallery of API results
         photoHTML = "";
-        $.each(data.items, function (i, photo) {
+        $.each(data.items, function(i, photo) {
             if (i <= 8) {
                 photoLink = photo.media.m;
                 photoLink = photoLink.replace('_m', "");
@@ -55,7 +58,7 @@ $(document).ready(function () {
                 Authorname = photo.author;
             }
         }); //  End of Loop
-        $('#contentRow').html(photoHTML);
+        $contentDiv.html(photoHTML).fadeIn();
     } // End of Function
 
 
@@ -86,7 +89,7 @@ $(document).ready(function () {
     //  Callback for AJAX Request
     function spotifyCallback(data) {
         albumHTML = "";
-        $.each(data.albums.items, function (i, album) {
+        $.each(data.albums.items, function(i, album) {
             albumHTML += '<div class="img-box sm-col-50 md-col-1-3">';
             //  Build anchor tag
             albumHTML += '<a href="' + album.images[0].url + '"';
@@ -101,16 +104,13 @@ $(document).ready(function () {
             //  Close div tag
             albumHTML += '</div>';
         }); //  End of Loop
-        $('#contentRow').html(albumHTML);
+        $contentDiv.html(albumHTML);
     } // End of Function
 
     //  .getJSON 'GET' Request returns JSON format
     function requestSpotify(data) {
         $.getJSON(spotifyURL, data, spotifyCallback);
     }
-
-    //  Call requestSpotify(data) on page load.
-    requestSpotify(spotifyData);
 
 
 
@@ -135,22 +135,22 @@ $(document).ready(function () {
 
 
     //  FLICKR-LINK NAV "click"
-    $('.flickr-link').on("click", function (e) {
+    $('.flickr-link').on("click", function(e) {
         //  Prevent page load
         e.preventDefault();
         //  Append flickr specific html input and button
         buildSearchFilterHTML('flickrSearchBtn', 'Search', 'sortDate', 'Sort Date', 'sortTitle', 'Sort Title');
         //  Content replace with stored formatted HTML from API request.
-        $('#contentRow').fadeOut('slow', function () {
+        $contentDiv.fadeOut('slow', function() {
             $(this).html(photoHTML)
                 .fadeIn('slow');
         });
         //  Hide Title, Update Title, then Show Title
-        $('.main-title').fadeOut('slow', function () {
-            $(this).html('Flickr API Photo Feed');
+        $('.main-title span').fadeOut('slow', function() {
+            $(this).removeClass('spotify').addClass('flickr').html('Flickr');
         }).fadeIn('slow');
 
-        $('#main-content').fadeOut('slow', function () {
+        $mainContent.fadeOut('slow', function() {
             $(this).removeClass('spotify-main')
                 .addClass('flickr-main')
                 .fadeIn('slow');
@@ -159,22 +159,24 @@ $(document).ready(function () {
 
 
     //  SPOTIFY-LINK NAV "click"
-    $('.spotify-link').on("click", function (e) {
+    $('.spotify-link').on("click", function(e) {
+        //  Call requestSpotify(data)
+        requestSpotify(spotifyData);
         //  Prevent page load
         e.preventDefault();
         //  Append html
-        buildSearchFilterHTML('spotifySearchBtn', 'Album', 'sortAlbum', 'Sort Album', 'sortArtist', 'Sort Artist');
+        buildSearchFilterHTML('spotifySearchBtn', 'Album/ Artist', 'sortAlbum', 'Sort Album', 'sortArtist', 'Sort Artist');
 
         //  Content replace with stored formatted HTML from API request.
-        $('#contentRow').fadeOut('slow', function () {
+        $contentDiv.fadeOut('slow', function() {
             $(this).html(albumHTML).fadeIn('slow');
         });
         //  Hide Title, Update Title, then Show Title
-        $('.main-title').fadeOut('slow', function () {
-            $(this).html('Spotify API Album Feed');
+        $('.main-title span').fadeOut('slow', function() {
+            $(this).removeClass('flickr').addClass('spotify').html('Spotify');
         }).fadeIn('slow');
 
-        $('#main-content').fadeOut('slow', function () {
+        $mainContent.fadeOut('slow', function() {
             $(this).removeClass('flickr-main')
                 .addClass('spotify-main')
                 .fadeIn('slow');
@@ -187,7 +189,7 @@ $(document).ready(function () {
     ////////////////////////////////////////
 
     //  flickr search input btn
-    $(document).on("click", '#flickrSearchBtn', function (e) {
+    $(document).on("click", '#flickrSearchBtn', function(e) {
         var searchData;
         // Prevent Default
         e.preventDefault();
@@ -209,7 +211,7 @@ $(document).ready(function () {
     });
 
     //  spotify search input btn
-    $(document).on("click", '#spotifySearchBtn', function (e) {
+    $(document).on("click", '#spotifySearchBtn', function(e) {
         var searchData;
         // Prevent Default
         e.preventDefault();
@@ -246,7 +248,7 @@ $(document).ready(function () {
         //  Anchor element References stored
         var $anchors = $('#contentRow div').find('a');
         //  Anchor elements Sorted by attribute 'data-name' from low to high.
-        var arr = $anchors.sort(function (a, b) {
+        var arr = $anchors.sort(function(a, b) {
             if (typeof a === 'number' && typeof b === 'number') {
                 contentA = parseInt($(a).attr(dataType));
                 contentB = parseInt($(b).attr(dataType));
@@ -258,7 +260,7 @@ $(document).ready(function () {
             return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
         });
         //  Iterates through divs nested in #contentRow container appending each of the sorted anchors in order.
-        $('#contentRow div').hide().each(function (index) {
+        $('#contentRow div').hide().each(function(index) {
             $(this).append(arr[index]);
         }).fadeIn('slow');
     }
@@ -269,22 +271,22 @@ $(document).ready(function () {
     //  Sort and Compare click events
     ////////////////////////////////////////
 
-    $(document).on("click", '#sortDate', function () {
+    $(document).on("click", '#sortDate', function() {
         //  call to sorting, function argument sorts items by attribute data-date
         sorting('data-date');
     });
 
-    $(document).on("click", '#sortTitle', function () {
+    $(document).on("click", '#sortTitle', function() {
         //  call to sorting, function argument sorts items by attribute data-title
         sorting('data-title');
     });
 
-    $(document).on("click", '#sortAlbum', function () {
+    $(document).on("click", '#sortAlbum', function() {
         //  call to sorting, function argument sorts items by attribute data-title
         sorting('data-title');
     });
 
-    $(document).on("click", '#sortArtist', function () {
+    $(document).on("click", '#sortArtist', function() {
         //  call to sorting, function argument sorts items by attribute data-title
         sorting('data-artist');
     });
