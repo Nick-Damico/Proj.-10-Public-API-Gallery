@@ -4,8 +4,12 @@
 #main-content {
     padding-top: 1rem;
     padding-bottom: 2rem;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 
     &.flickr-main {
         background: $color-bg-black;
@@ -17,14 +21,20 @@
 }
 
 #contentRow {
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 /********************
   Search and filter
 ********************/
 .search-filter-row {
-    flex-direction: row;
-    justify-content: space-around;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
     @include col-md{
         padding-top: 1rem;
         padding-bottom: 1rem;
@@ -38,8 +48,8 @@
             width: auto;
             margin-bottom: 0;
             margin-right: auto;
-            // display: flex;
-            // flex-direction: row;
+            /* display: flex;*/
+            /* flex-direction: row;*/
         };
 
         input[type="search"] {
@@ -47,6 +57,10 @@
             border: none;
             color: rgba(32, 32, 34, .84);
             padding: 6px 12px;
+            -webkit-transition: -webkit-transform .5s ease-out;
+            transition: -webkit-transform .5s ease-out;
+            transition: transform .5s ease-out;
+            transition: transform .5s ease-out, -webkit-transform .5s ease-out;
         }
 
         button[type="submit"] {
