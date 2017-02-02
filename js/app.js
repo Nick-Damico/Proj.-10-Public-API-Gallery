@@ -15,11 +15,13 @@ $(document).ready(function() {
     var $mainTitle = $('.main-title');
     var $mainContent = $('#main-content');
     var $mainWrapper = $('#mainContentWrapper');
+
+
     ////////////////////////////////////////
     //  AJAX REQUEST FOR FLICKR PUBLIC API
     ////////////////////////////////////////
 
-    $contentDiv.hide();
+    // $contentDiv.hide();
 
     //  URL for AJAX JSON Request
     var flickrURL = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
@@ -194,7 +196,7 @@ $(document).ready(function() {
     ////////////////////////////////////////
     //  Search input
     ////////////////////////////////////////
-
+    $(document).on("key")
     //  flickr search input btn
     $(document).on("click", '#flickrSearchBtn', function(e) {
         var searchData;

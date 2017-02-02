@@ -2,7 +2,13 @@
 BASE STYLES
 /***************************************/
 *, *:after, *:before {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border: 1px solid red; }
+
+html,
+body {
+  margin-bottom: 0;
+  padding-bottom: 0; }
 
 body {
   font-size: 16px;
@@ -197,7 +203,8 @@ ul {
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center; }
+  justify-content: center;
+  margin-top: -2px; }
   #main-content.flickr-main {
     background: #252525; }
   #main-content.spotify-main {
